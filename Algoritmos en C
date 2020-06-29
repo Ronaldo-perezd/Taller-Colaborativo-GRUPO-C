@@ -14,23 +14,12 @@ int main(){
 	int funcion=1;
 	
 	
-	printf("BIENVENIDO\nTALLER COLABORATIVO-ALGORITMO EN C\n\n");
-	
+	printf("BIENVENIDO\nTALLER COLABORATIVO-ALGORITMO EN C\n\n");	
 	do{
 	printf("(Digite el numeral a elegir, usando unicamente el numero(#) representativo del ejercicio)\n");
 	printf("\n1.Primos Descendente.\n2.Numero Egolatra.\n3.\n4.\n5.Contador Omitiendo un digito.\n6.\n7.\n8.SALIR\n");
 	printf("->\n");
 	scanf("%i",&x);
-	if( scanf("%d",&x) == 0 ){
-  // Eliminamos todos los caracteres hasta el primer espacio o salto de linea
-  for( int c = getchar(); c != EOF && c != ' ' && c != '\n' ; c = getchar());
-  puts("ERROR");
-}
-else
-  puts("OK");
-	
-	
-	
 	
 	printf("..............................................................\n\n\n\n\n\n\nOpcion %i: ",x);
 	
