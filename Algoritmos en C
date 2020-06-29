@@ -1,0 +1,216 @@
+//TALLER COLABORATIVO-ALGORITMOS EN C
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int primero();
+int segundo();
+int quinto();
+
+int main(){
+	
+	int x;
+	int funcion=1;
+	
+	
+	printf("BIENVENIDO\nTALLER COLABORATIVO-ALGORITMO EN C\n\n");
+	
+	do{
+	printf("(Digite el numeral a elegir, usando unicamente el numero(#) representativo del ejercicio)\n");
+	printf("\n1.Primos Descendente.\n2.Numero Egolatra.\n3.\n4.\n5.Contador Omitiendo un digito.\n6.\n7.\n8.SALIR\n");
+	printf("->\n");
+	scanf("%i",&x);
+	if( scanf("%d",&x) == 0 ){
+  // Eliminamos todos los caracteres hasta el primer espacio o salto de linea
+  for( int c = getchar(); c != EOF && c != ' ' && c != '\n' ; c = getchar());
+  puts("ERROR");
+}
+else
+  puts("OK");
+	
+	
+	
+	
+	printf("..............................................................\n\n\n\n\n\n\nOpcion %i: ",x);
+	
+	switch(x){
+		//-----------------------------------------------------------------
+		case 1:
+			printf("\n1.Se visualizan descendentemente los numeros primos que hay a partir de un numero digitado hasta 1\n");
+			printf("Digite un numero, debe ser mayor a 1 y entero.\n_->_\n");
+			primero();
+			break;
+        //-----------------------------------------------------------------
+		case 2:
+			printf("\nREVISAR SI EL NUMERO ES EGOLATRA");
+			segundo();
+			break;
+		//-----------------------------------------------------------------	
+		case 3:
+			printf("");
+			break;
+		//-----------------------------------------------------------------	
+		case 4:
+			printf("");
+			break;
+		//-----------------------------------------------------------------	
+		case 5:
+			printf("Ejercicio contador ignorando un digito, se tendra en cuenta un rango digitado por el usuario y\n");
+	        printf("un numero el cual sera ignorada cualquier aparicion de dicho numero en ese rango.\n");
+			quinto();
+			break;
+		//-----------------------------------------------------------------	
+		case 6:
+			printf("");
+			break;
+		//-----------------------------------------------------------------	
+		case 7:
+			printf("");
+			break;
+		//-----------------------------------------------------------------
+		case 8:
+			printf("\n\nCERRANDO...\n");
+			funcion++;
+			break;
+			
+		//-----------------------------------------------------------------	
+		default:
+			printf("OPCION INVALIDAD, VOLVER AL MENU INICIAL.");
+			printf("\n\n\n...........................................\n\n\n");
+			
+			break;
+	}
+		printf("TALLER COLABORATIVO-ALGORITMO EN C\n\n");
+	
+	    }
+    while(funcion==1);
+	
+	system ("pause");
+	return 0;
+}
+
+
+
+
+
+//EJERCICIO 1. ELEGIR UN NUMERO Y BUSCAR LOS NUMEROS PRIMOS ANTERIORES A EL E IMPRIMIRLOS DE MANERA DESCENDENTE.
+
+int primero(){
+	
+	int r,i;
+	
+    scanf("%i",&r);
+			
+			if(r>1){
+				printf("Numero revisados: \n");
+			    for (i = r ; i > 0 ; i--){
+			   	printf("%i, ",i);
+			    }			
+			    printf("\nLos numeros primos son: \n");
+			    
+			     int contador, n, primo;
+                for ( n = r ; n > 1 ; n-- ){
+                    primo = 1;
+                    contador = 2;
+
+                    while ( contador <= n / 2 && primo ){
+                        if ( n % contador == 0 )
+                        primo = 0;
+                        contador++;
+                    }
+                if ( primo )
+                    printf( "%d, ", n );
+                }
+                printf("\nOPERACION COMPLETA...\n\n\n");
+                 
+            }
+			else{
+		       	printf("Digitaste un caracter invalido, no se pudo completar el funcionamiento\nVolviendo al menu principal\n");
+			}
+			
+			
+			system ("pause");
+			printf("\n\n\n\n\n\n\n");
+	
+	return 0;
+}
+
+
+//EJERCICIO 2. DIGITAR UN NUMERO Y REALIZAR LA RESPECTIVA OPERACION PARA RECTIFICAR SI ES O UN NUMERO EGOLATRA.
+
+int segundo(){
+    int n,m,i,p,egolatra;
+    int contador=1;
+    int d[12];
+    printf("ingrese el numero\n->");
+    scanf("%d",&n);
+    while(n<=0){
+       printf("el numero debe ser positivo:\n(intente de nuevo)\n->");
+       scanf("%d",&n);
+    }
+    p=n;
+    m=n;
+    while(p/10>0){
+        p=p/10;
+        contador++;
+    }
+    while(n){
+       d[i]=n%10;
+       n=n/10;
+       i++;
+    }
+    int j;
+    for(j=0;j<i;j++){
+       printf("\nDigito de orden %d.  %d^%d  y exponente a su cantidad de digitos es: %lf",j+1,d[j],contador
+	   ,pow (d[j],contador));
+       egolatra=egolatra+pow(d[j],contador);
+    }
+    printf("\n\nSI  %d = %d\n",m,egolatra);
+    if(m==egolatra){
+    	printf("SI ES UN NUMERO EGOLATRA\n");
+	}else{
+		printf("NO ES UN NUMERO EGOLATRA\n");
+	}
+    getchar();
+    
+    	system ("pause");
+    	printf("\n\n\n\n\n\n\n");
+    return 0;
+}
+
+
+//EJERCICIO 5. DIGITAR UN RANGO DE NUMEROS, ELEGIR UN DIGITO EL CUAL NO SERA TOMADO EN CUENTA. SUMA TOTALES DE DIGITOS Y SUMA DE IGNORADOS. 
+
+int quinto(){
+	
+    int min,max,esp,i,suma=0,cont,j,prov;	
+	
+	printf("\nDigite el valor minimo del rango\n->");
+	scanf("%i",&min);
+	printf("\nDigite le valor maximo del rango\n->");
+    scanf("%i",&max);
+    printf("\nDigite el valor a ignorar en todo el rango\n->");
+    scanf("%i",&esp);	
+    
+    
+    for(i=min;i<=max;i++){
+    j=i;
+    
+	   while(j){
+            prov=j%10;
+            j=j/10;
+            
+            if(prov==esp){
+       	        cont=cont+1;
+	        }else{
+	   	        suma=suma+prov;
+	        }
+        } 	
+	}
+    printf("\n\nRTA:\n\nEl valor minimo es: %i y el valor maximo es: %i, y el numero a ignorar es: %i\n",min,max,esp);
+	printf("El total de suma de digitos es: %i y los digitos ignorados fueron:: %i\n\n\n\n",suma,cont);
+	system ("pause");
+   	printf("\n\n\n\n\n\n\n");
+	return 0;w} 
+
