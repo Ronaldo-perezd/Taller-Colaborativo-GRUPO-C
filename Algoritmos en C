@@ -1,0 +1,521 @@
+/*
+
+
+NOTA: Para la ejecucion del programa se trabajo en DEV C++, como plataforma de edicion y copilacion, esto con el fin de aclarar
+      y evitar problemas al momento de ejecutar el programa, se uso la version de C basico y este presenta algunos problemas de
+      compatibilidad con editores distintos, gracias.
+      
+      
+      
+
+
+-----TALLER COLABORATIVO-ALGORITMOS EN C----
+
+COLABORADORES:
+-Juan Camilo Gonzalez Silva       -201622048
+-Angel Ronaldo Perez Diaz         -201722317
+-Camilo Andrés Castañeda Comba    -201821409
+
+MATERIA:
+-Programacion III
+
+FACULTAD:
+-INGENIERIA DE SISTEMAS Y COMPUTACION
+
+                             UPTC.
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+//Los  ejercicios definidos para ser llamados.
+int primero();
+int segundo();
+int tercero();
+int cuarto();
+int quinto();
+int sexto();
+int septimo();
+//El main, incluye el menu principal.
+int main(){
+	
+//Variables del Main
+//opcMenu=guarda la opcion del menu.         segMenu= Mantiene el menu funcionando hasta que el usuario decide salir.
+
+	int opcMenu=0;
+	int segMenu=1;
+	
+	
+	printf("BIENVENIDO\n\n\n\n____________________TALLER COLABORATIVO-ALGORITMO EN C____________________\n\n");
+	
+	do{
+//MENU...
+	printf("(Digite el numeral a elegir, usando unicamente el numero(#) representativo del ejercicio)\n");
+	printf("\n1.Primos Descendente.\n2.Numero Egolatra.\n3.Numero Magico.\n4.Calculadora de IMC\n5.Contador Omitiendo un digito.\n");
+	printf("6.Numero Fibonacci\n7.Cadena de O y X.\n8.SALIR\n");
+	printf("->\n");
+	scanf("%i",&opcMenu);
+	printf("..............................................................\n\n\n\n\n\n\nOpcion %i: ",opcMenu);
+
+
+//Menu de casos, para redirigir al ejercicio elegido por el usuario.
+	switch(opcMenu){
+		//-----------------------------------------------------------------
+		case 1:
+			printf("\n1.Se visualizan descendentemente los numeros primos que hay a partir de un numero digitado hasta 1\n");
+			printf("Digite un numero, debe ser mayor a 1 y entero.\n_->_\n");
+			primero();
+			break;
+        //-----------------------------------------------------------------
+		case 2:
+			printf("\nREVISAR SI EL NUMERO ES EGOLATRA");
+			segundo();
+			break;
+		//-----------------------------------------------------------------	
+		case 3:
+			printf("\nNUMERO MAGICO.\n\n\n");
+			tercero();
+			break;
+		//-----------------------------------------------------------------	
+		case 4:
+			printf("Indice de masa corporal IMC\n\n");
+			cuarto();
+			break;
+		//-----------------------------------------------------------------	
+		case 5:
+			printf("Ejercicio contador ignorando un digito, se tendra en cuenta un rango digitado por el usuario y\n");
+	        printf("un numero el cual sera ignorada cualquier aparicion de dicho numero en ese rango.\n");
+			quinto();
+			break;
+		//-----------------------------------------------------------------	
+		case 6:
+			printf("Ejercicio de numero fibonacci...");
+			sexto();
+			break;
+		//-----------------------------------------------------------------	
+		case 7:
+			printf("El ejercio consiste en digitar una cadena de digios randomicamente entre X y O, evaluarlos y ejecutar el contador\n\n");
+			septimo();
+			break;
+		//-----------------------------------------------------------------
+		case 8:
+			printf("\n\nCERRANDO...\n");
+			segMenu++;
+			break;
+			
+		//-----------------------------------------------------------------	
+		default:
+			printf("OPCION INVALIDAD, VOLVER AL MENU INICIAL.");
+			printf("\n\n\n...........................................\n\n\n");
+			
+			break;
+	}
+		printf("TALLER COLABORATIVO-ALGORITMO EN C\n\n");
+	
+	    }
+//While que mantiene el menu en ejecucion, hasta que el usuario decida Salir
+    while(segMenu==1);
+	
+	system ("pause");
+	return 0;
+}
+
+//EJERCICIO 1. ELEGIR UN NUMERO Y BUSCAR LOS NUMEROS PRIMOS ANTERIORES A EL E IMPRIMIRLOS DE MANERA DESCENDENTE.
+//..............................................................................................................
+
+int primero(){
+	
+//numElegido= define el numero que el usuario digito anteriormente y es usado en todo el programa,  i= se usa en el for.
+//contador= y primo= son usados en el proceso logico, y n= es necesario en el siguiente for.
+	int numElegido=0,i=0;
+	int contador=0, n=0, primo=0;
+	 
+    scanf("%i",&numElegido);
+			
+			if(numElegido>1){
+				printf("Numero revisados: \n");
+			    for (i = numElegido ; i > 0 ; i--){
+			   	printf("%i, ",i);
+			    }			
+			    printf("\nLos numeros primos son: \n");
+			    
+			    
+                for ( n = numElegido ; n > 1 ; n-- ){
+                    primo = 1;
+                    contador = 2;
+
+                    while ( contador <= n / 2 && primo ){
+                        if ( n % contador == 0 )
+                        primo = 0;
+                        contador++;
+                    }
+                if ( primo )
+                    printf( "%d, ", n );
+                }
+                printf("\nOPERACION COMPLETA...\n\n\n");
+                 
+            }
+			else{
+		       	printf("Digitaste un caracter invalido, no se pudo completar el funcionamiento\nVolviendo al menu principal\n");
+			}
+			
+			
+			system ("pause");
+			printf("\n\n\n\n\n\n\n");
+	
+	return 0;
+}
+
+
+
+//EJERCICIO 2. DIGITAR UN NUMERO Y REALIZAR LA RESPECTIVA OPERACION PARA RECTIFICAR SI ES O UN NUMERO EGOLATRA.
+//............................................................................................................
+
+int segundo(){
+	
+// n= es la variable a tratar, el numero digitado por el usuario, m= y p= son usados como provicionales de n, 
+//egolatra= es la variable que se comporta como comparador al inicial para tratar, contador= se usa varias veces en
+//el proceso logico y d[]= almacena los decimales uno a uno para ser operador logicamente.
+//i= y j= son usados en los ciclos.
+    int n=0,m=0,p=0,i=0,j=0,egolatra=0; 
+    int contador=1;
+    int d[12];
+    
+
+    printf("ingrese el numero\n->");
+    scanf("%d",&n);
+//Rectifica que el numero sea positivo, de no ser así se da un nuevo intento.
+    while(n<=0){
+       printf("\n\n\nel numero debe ser positivo:\n(intente de nuevo)\n->");
+       scanf("%d",&n);
+    }
+    p=n;
+    m=n;
+//while contador de digitos ingresados, son usados en todos los demas ciclos .
+    while(p/10>0){
+        p=p/10;
+        contador++;
+    }
+//while para guardas individualmente cada digito para ser operado en el exponencial.
+    while(n){
+       d[i]=n%10;
+       n=n/10;
+       i++;
+    }
+//for que imprime todos los digitos ingresados y sus exponentes para luego ser sumados 
+    for(j=0;j<i;j++){
+       printf("\nDigito de orden %d.  %d^%d  y exponente a su cantidad de digitos es: %lf",j+1,d[j],contador
+	   ,pow (d[j],contador));
+       egolatra=egolatra+pow(d[j],contador);
+    }
+    printf("\n\nSI  %d = %d\n",m,egolatra);
+//if que evalua ambos numeros y rectifica si son o no iguales. Para determinar si es o no egolatra.
+    if(m==egolatra){
+    	printf("SI ES UN NUMERO EGOLATRA\n");
+	}else{
+		printf("NO ES UN NUMERO EGOLATRA\n");
+	}
+    getchar();
+    
+    	system ("pause");
+    	printf("\n\n\n\n\n\n\n");
+    return 0;
+}
+
+
+
+//EJERCICIO 3. NUMERO MAGICO.
+//...........................
+
+
+/* Procedimiento para ordenar dos numeros. */
+void swap(int* x, int* y) {
+	if (*x < *y) {
+		int aux;
+		aux = *x;
+		*x = *y;
+		*y = aux;
+	}
+}
+/* Funcion que devuelve la longitud de un int. */
+int LongitudInt(int n) {
+	int i = 1;
+	while (n > 9) {
+		i++;
+		n /= 10;
+	}
+	return i;
+}
+/* Funcion que devuelve un int con sus digitos en orden descendente. */
+int OrdenacionDescendenteInt(int n) {
+	int i=0, n_ordenado = 0;
+	for (i = 9; i >= 0; i--) {
+		int aux = n;
+		while (aux > 0) {
+			int digit = aux % 10;
+			if (digit == i) {
+				n_ordenado *= 10;
+				n_ordenado += digit;
+			}
+			aux /= 10;
+		}
+	}
+	return n_ordenado;
+}
+/* Funcion que devuelve un int con sus digitos en orden ascendente. */
+int OrdenacionAscendenteInt(int n) {
+	int i=0, n_ordenado = 0;
+	for (i = 0; i <= 9; i++) {
+		int aux = n;
+		while (aux > 0) {
+			int digit = aux % 10;
+			if (digit == i) {
+				n_ordenado *= 10;
+				n_ordenado += digit;
+			}
+			aux /= 10;
+		}
+	}
+	return n_ordenado;
+}
+/* Funcion que comprueba si el numero introducido tiene 4 digitos. */
+static bool CompruebaDigitos(int n) {
+	if (LongitudInt(n) < 4) {
+		printf("Longitud del numero %d invalida. Tiene que tener 4 digitos.\n", n);
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+int tercero() {
+	char pregunta = 0;
+	int n=0, x=0, y=0, nMagico=0;
+	printf("Ingrese el numero a revisar: \n");
+	scanf("%d", &n);
+	x = OrdenacionDescendenteInt(n);
+	y = OrdenacionAscendenteInt(n);
+	nMagico = x - y;
+	printf("%d - %d = %d\n", x, y, nMagico);
+	if (nMagico == n) {
+		printf("El numero %d es un numero magico \n", n);
+	}
+	printf("¿Quiere ingresar otro numero? Ingrese (S) para Si o (N) para No ");
+	
+	scanf(" %c", &pregunta);
+	if (pregunta == 'S') {
+		tercero();
+	}
+	else {
+		printf("La operación ha finalizado \n");
+	}
+	printf("\n\n\n\n\n");
+	system("pause");      
+	return 0; 
+}
+
+
+//EJERCICIO 4. INDICE DE MASA CORPORAL. IMC
+//...........................
+int mujer[6] = { 16, 20, 24, 29, 34, 39 };
+int hombre[6] = { 17, 20, 25, 30, 35, 40 };
+char* diagnostico[7] = { "desnutrido", "bajoPeso", "Normal", "Sobrepeso", "Obesidad", "ObesidadMarcada", "ObesidadMorbida" };
+
+int CalcularTabla(char sex, float indice) {
+
+    int i=0;
+
+	if (sex == 'M') {
+		for (i = 0; i < 6; i++) {
+			if (indice < (float)mujer[i]) {
+				printf("\nSu IMC indica que esta: %s \n", diagnostico[i]);
+				return 0;
+			}
+		}
+		printf("\nSu IMC indica que esta: %s \n", diagnostico[6]);
+		return 0;
+	}
+	else {
+		for (i = 0; i < 6; i++) {
+			if (indice < hombre[i]) {
+				printf("\nSu IMC indica que esta: %s \n", diagnostico[i]);
+				return 0;
+			}
+		}
+		printf("\nSu IMC indica que esta: %s \n", diagnostico[6]);
+		return 0;
+	}
+}
+
+
+int cuarto() {
+	float altura, peso, IMC;
+	float convertirAltura;
+	char sexo;
+	printf("\nPor favor ingrese el sexo de la persona, Mujer (M) u Hombre (H): \n");
+	scanf("%c", &sexo);
+	printf("Por favor ingrese su altura: ");
+	scanf("%f", &altura);
+	printf("Por favor ingrese su peso: ");
+	scanf("%f", &peso);
+	if (sexo == 'M') {
+		printf("Selecciono mujer \n");
+		printf("su altura es %f y su peso es %f \n", altura, peso);
+	}
+	else {
+		if (sexo == 'H') {
+			printf("Selecciono hombre \n");
+			printf("su altura es %f y su peso es %f \n", altura, peso);
+		}
+		else {
+			printf("Operacion no valida\n\n");
+		}
+	}
+	convertirAltura = altura / 100;
+	IMC = peso / (convertirAltura * convertirAltura);
+	printf("su IMC es %f \n", IMC);
+	CalcularTabla(sexo, IMC);
+	system("pause");
+	return 0;
+}
+
+
+//EJERCICIO 5. DIGITAR UN RANGO DE NUMEROS, ELEGIR UN DIGITO EL CUAL NO SERA TOMADO EN CUENTA. SUMA TOTALES DE DIGITOS Y SUMA DE IGNORADOS. 
+//..........................................................................................................................................
+
+int quinto(){
+	
+//Variables del quinto ejercicio, min= y max= son las especificaciones del rango, esp= es el numero que ignoramos, i= es necesario en el contador del for,
+//suma= es el contador que suma todos los digitos en el rango menos el definido, cont= es el contador de las veces que se ignoro el numero definido y
+//prov= es una variable de operacion para obtener los decimales.
+    int min=0,max=0,esp=0,i=0,suma=0,cont=0,j=0,prov=0;	
+	
+	printf("\nDigite el valor minimo del rango\n->");
+	scanf("%i",&min);
+	printf("\nDigite le valor maximo del rango\n->");
+    scanf("%i",&max);
+    
+//if Rectifica que el primer numero pedido sea menor al segundo numeor pedido, de no ser así el if retornara un error y el programa volvera al menu.
+    if(min<max){
+        printf("\nDigite el valor a ignorar en todo el rango\n->");
+        scanf("%i",&esp);
+			
+//for de toda la operacion logica de los contadores.
+        for(i=min;i<=max;i++){
+            j=i;
+    
+	        while(j){
+                prov=j%10;
+                j=j/10;
+            
+                if(prov==esp){
+       	             cont=cont+1;
+	            }else{
+	   	            suma=suma+prov;
+	            }
+            } 	
+	    }
+        printf("\n\nRTA:\n\nEl valor minimo es: %i y el valor maximo es: %i, y el numero a ignorar es: %i\n",min,max,esp);
+	    printf("El total de suma de digitos es: %i y los digitos ignorados fueron:: %i\n\n\n\n",suma,cont);
+    }
+	else{
+		printf("\n\nEs necesario que el primer numero digitado sea menor al segundo numero\nLa operacion no puso concluirse,\n\nVOLEVIENDO AL MENU\n\n\n\n ");
+	}
+	system ("pause");
+   	printf("\n\n\n\n\n\n\n");
+	return 0;
+}
+
+
+
+//EJERCICIO 6. FIBONACCI. 
+//...........................
+
+
+char* Fibonacci(int n) {
+    char* cadena = " ";
+    char* s1 = " ";
+    char* s2 = " ";
+    if(n == 0) {
+        cadena = "0";
+    }
+
+    if(n == 1) {
+        cadena = "1";
+    }
+
+    if(n >= 2) {
+        s1 = Fibonacci(n - 1);
+        s2 = Fibonacci(n - 2);
+        const size_t len1 = strlen(s1);
+        const size_t len2 = strlen(s2);
+        char* resultado = malloc(len1 + len2 + 1);
+        memcpy(resultado, s1, len1);
+        memcpy(resultado + len1, s2, len2 + 1);
+        cadena = resultado;
+    }
+    return cadena;
+}
+
+int Find(char* cadena1, char* cadena2) {
+    char* busqueda = NULL;
+    busqueda = strstr(cadena1, cadena2);
+    int i = 0;
+    while (busqueda!= 0) {
+        i++;
+        busqueda = strstr(busqueda + 1, cadena2);
+    }
+    return i;
+
+}
+
+int sexto(){
+    
+    int numeroEval = 0;
+    int veces = 0;
+    char w[128];
+    printf("\nIngrese numero entero a convertir: \n->");
+    scanf("%d", &numeroEval);
+    char* res = Fibonacci(numeroEval);
+    printf("%s", res);
+    printf("\nIngrese secuencia de bits: \n->");
+    scanf("%s", w, sizeof(w));
+    veces = Find(res, w);
+    printf("Se encuentra la secuencia %s - %d veces\n\n\n", w, veces);
+    getchar();
+    system("pause");
+    return 0;
+}
+
+
+//EJERCICIO 7. CADENA DE CARACTERES EN X y O para operaciones logicas.
+//...........................
+
+
+int septimo() {
+    printf("DIGITE EL RESULTADO DE LA PRUEBA EN FORMA DE CADENA XOXO \n Tomando como correctas O, y incorrectas X: ");
+     char cadena[100];
+    scanf("%s",&cadena);
+   
+     int contadorCadena=0;
+     int suma=0;
+     int i=0;
+    for( i=0;i<=strlen(cadena);i++){
+        if(cadena[i]=='O'||cadena[i]=='o'||cadena[i]=='0'){
+            contadorCadena++;
+            suma=suma+contadorCadena;
+        }
+        else {
+            contadorCadena=0;
+        }
+    } 
+    
+     printf("\n");
+     printf("EL RESULTADO DE LA PRUEBA ES: %d",suma);
+     printf("\n\n\n\n");
+     system("pause");
+    return 0;
+}
